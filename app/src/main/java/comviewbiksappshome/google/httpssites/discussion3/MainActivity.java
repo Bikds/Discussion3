@@ -79,7 +79,13 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseListAdapter = new FirebaseListAdapter<Messages>(options) {
             @Override
             protected void populateView(View v, Messages model, int position) {
-                
+                TextView textMessage = (TextView) v.findViewById(R.id.messageBody);
+                TextView userName = (TextView)v.findViewById(R.id.userName);
+                TextView time = (TextView)v.findViewById(R.id.timeStamp);
+
+                textMessage.setText(model.getText());
+                userName.setText(model.getUserName());
+                time.setText(DateFormat.DATE_FIELD);
             }
         };
         messageList.setAdapter(mFirebaseListAdapter);
