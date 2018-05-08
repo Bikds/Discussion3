@@ -58,10 +58,10 @@ public class MainActivity extends AppCompatActivity {
             getTextMessages();
         }
 
-        Button send = (Button) findViewById(R.id.sendButton);
+        Button send = findViewById(R.id.sendButton);
         send.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                EditText textMessage = (EditText) findViewById(R.id.textMessage);
+                EditText textMessage = findViewById(R.id.textMessage);
 
                 // Reads the data in textMessage and stores it in the database
                 FirebaseDatabase.getInstance().getReference().push().setValue(textMessage.getText().toString(),
@@ -73,15 +73,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getTextMessages() {
-        ListView messageList = (ListView) findViewById(R.id.messageList);
+        ListView messageList = findViewById(R.id.messageList);
         Query q = FirebaseDatabase.getInstance().getReference();
         FirebaseListOptions<Messages> options = new FirebaseListOptions.Builder<Messages>().setQuery(q, Messages.class).setLayout(R.layout.message).build();
         mFirebaseListAdapter = new FirebaseListAdapter<Messages>(options) {
             @Override
             protected void populateView(View v, Messages model, int position) {
-                TextView textMessage = (TextView) v.findViewById(R.id.messageBody);
-                TextView userName = (TextView)v.findViewById(R.id.userName);
-                TextView time = (TextView)v.findViewById(R.id.timeStamp);
+                TextView textMessage = v.findViewById(R.id.messageBody);
+                TextView userName = v.findViewById(R.id.userName);
+                TextView time = v.findViewById(R.id.timeStamp);
 
                 textMessage.setText(model.getText());
                 userName.setText(model.getUserName());
