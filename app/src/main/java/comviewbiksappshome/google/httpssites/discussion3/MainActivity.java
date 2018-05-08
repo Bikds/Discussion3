@@ -1,5 +1,6 @@
 package comviewbiksappshome.google.httpssites.discussion3;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
@@ -12,16 +13,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.database.FirebaseListOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import org.w3c.dom.Text;
 
@@ -69,17 +74,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void getTextMessages() {
         ListView messageList = (ListView) findViewById(R.id.messageList);
-        mFirebaseListAdapter = new FirebaseListAdapter<Messages>(FirebaseDatabase.getInstance().getReference(), Messages.class,
-                R.layout.message, this) {
+        Query q = FirebaseDatabase.getInstance().getReference();
+        FirebaseListOptions<Messages> options = new FirebaseListOptions.Builder<Messages>().setQuery(q, Messages.class).setLayout(R.layout.message).build();
+        mFirebaseListAdapter = new FirebaseListAdapter<Messages>(options) {
             @Override
             protected void populateView(View v, Messages model, int position) {
-                TextView messageBody = (TextView)v.findViewById(R.id.textMessage);
-                TextView userName = (TextView)v.findViewById(R.id.userName);
-                TextView messageTime = (TextView)v.findViewById(R.id.timeStamp);
-
-                messageBody.setText(model.getText());
-                userName.setText(model.getUserName());
-                //messageTime.setText(DateFormat.format("MM-dd-yyyy hh:mm:ss", model.getTimeStamp());
+                
             }
         };
         messageList.setAdapter(mFirebaseListAdapter);
