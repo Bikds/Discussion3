@@ -35,7 +35,7 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static int SIGN_IN_CODE = 1;
+    public static int SIGN_IN_CODE = 10;
     // used to display messages in the ListView
     private FirebaseListAdapter<Messages> mFirebaseListAdapter;
 
