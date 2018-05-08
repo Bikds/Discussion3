@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--Name of sender-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/userName"
+        android:textSize="12dp"
+        android:textStyle="italic"
+        android:textColor="@android:color/secondary_text_dark"
+        />
+
+    <!--Message Contents-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userName"
+        android:textSize="15dp"
+        android:textColor="@android:color/black"
+        android:id="@+id/messageBody"/>
+
+    <!--Time Stamp-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/messageBody"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/timeStamp"
+        android:textStyle="italic"
+        android:textColor="@android:color/secondary_text_dark"
+        android:textSize="10dp"/>
+
+</RelativeLayout>
